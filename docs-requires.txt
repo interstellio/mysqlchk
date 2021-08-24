@@ -1,0 +1,14 @@
+# Sphinx Documentation
+Sphinx
+sphinxcontrib-napoleon
+sphinxcontrib-fulltoc
+
+# Pretty / Themes
+nebularstack.g-sphinx
+Pygments
+
+# Miscellaneous
+docutils
+MarkupSafe
+watchdog
+mock
