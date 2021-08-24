@@ -49,7 +49,7 @@ def server(args):
             return web.Response(text=msg, status=500)
 
     app = web.Application()
-    app.add_routes([web.get('/', hello)])
+    app.add_routes([web.route('*', '/', hello)])
 
     web.run_app(app, port=8080)
 

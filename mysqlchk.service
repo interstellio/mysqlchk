@@ -1,0 +1,17 @@
+[Unit]
+Description=MYSQLCHK HTTP daemon
+After=network.target
+
+[Service]
+User=nebularstack
+Group=nebularstack
+WorkingDirectory=/tmp
+ExecStart=mysqlchk -s
+LimitAS=infinity
+LimitRSS=infinity
+LimitCORE=infinity
+LimitNOFILE=65536
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
