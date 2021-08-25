@@ -32,6 +32,8 @@ def mysqlchk(args):
                 return (True, 'Synced',)
             else:
                 return (False, 'Out-Of-Sync',)
+        connection.close()
+
     except Exception as err:
         return (False, err,)
 
