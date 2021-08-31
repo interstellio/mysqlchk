@@ -28,12 +28,18 @@ def mysqlchk(args):
         with connection.cursor() as crsr:
             crsr.execute("show status like 'wsrep_local_state_comment'")
             res = crsr.fetchone()
-            if res['Value'].lower() == 'synced':
+            if res['Value'].lower() != 'synced':
                 connection.close()
-                return (True, 'Synced',)
-            else:
+                return (False, 'Not-In-Sync',)
+
+            crsr.execute("show status like 'wsrep_ready'")
+            res = crsr.fetchone()
+            if res['Value'].lower() != 'on':
                 connection.close()
-                return (False, 'Out-Of-Sync',)
+                return (False, 'WSREP not ready',)
+
+            connection.close()
+            return (True, 'Synced',)
 
     except Exception as err:
         return (False, err,)
